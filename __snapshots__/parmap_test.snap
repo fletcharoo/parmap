@@ -1,0 +1,65 @@
+
+[Test_Do - 1]
+[
+ 5,
+ 10,
+ 15,
+ 20,
+ 25,
+ 30,
+ 35,
+ 40,
+ 45,
+ 50,
+ 55,
+ 60,
+ 65,
+ 70,
+ 75,
+ 80,
+ 85,
+ 90,
+ 95,
+ 100
+]
+---
+
+[Test_Do_Error/Error - 1]
+parmap.ErrMap{
+    2:  &errors.errorString{s:"error 3"},
+    5:  &errors.errorString{s:"error 6"},
+    8:  &errors.errorString{s:"error 9"},
+    11: &errors.errorString{s:"error 12"},
+    14: &errors.errorString{s:"error 15"},
+    17: &errors.errorString{s:"error 18"},
+}
+---
+
+[Test_Do_Error/Result - 1]
+[]int{1, 2, 0, 4, 5, 0, 7, 8, 0, 10, 11, 0, 13, 14, 0, 16, 17, 0, 19, 20}
+---
+
+[Test_ErrMap_ErrJoin - 1]
+&errors.joinError{
+    errs: {
+        &fmt.wrapError{
+            msg: "1: error 1",
+            err: &errors.errorString{s:"error 1"},
+        },
+        &fmt.wrapError{
+            msg: "2: error 2",
+            err: &errors.errorString{s:"error 2"},
+        },
+        &fmt.wrapError{
+            msg: "3: error 3",
+            err: &errors.errorString{s:"error 3"},
+        },
+    },
+}
+---
+
+[Test_ErrMap_String - 1]
+1: error 1
+2: error 2
+3: error 3
+---
